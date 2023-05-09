@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<SignUp setUserData={setUserData} />} />
           <Route path="/login" element={<LogIn setUserData={setUserData} />} />
-          <Route path="/welcome" element={<Welcome setUserData={setUserData?.displayName} />} />
+          <Route path="/welcome" element={<Welcome displayName={Userdata?.displayName} />} />
         </Routes>
       </BrowserRouter>
 
