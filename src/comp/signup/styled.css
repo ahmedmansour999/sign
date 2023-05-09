@@ -1,8 +1,13 @@
 *{
     font-family: math;
-    text-align: center;
+
 }
 
+.error-message {
+    font-family: emoji;
+    letter-spacing: 2.2px;
+    color: white;
+}
 
 .signup{
     display: flex;

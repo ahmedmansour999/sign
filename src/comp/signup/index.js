@@ -15,7 +15,7 @@ const SignUp = ({setUserData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!FirstName || !LastName) {
-      setError("Please enter your first and last name.");
+      setError('"Please enter your first and last name"');
       return;
     }
     try {
@@ -32,21 +32,20 @@ const SignUp = ({setUserData }) => {
       navigate('/login');
 
     } catch (error) {
-     if (error.code==="auth/weak-password") {
-        setError("Password should be at least 6 characters.")
-     } if (error.code==="auth/email-already-in-use") {
-        setError("Email is already in use.")
-     } else {
-      setError(error.message);
-
-     }
+      if (error.code === "auth/weak-password") {
+        setError('"Password should be at least 6 characters"');
+      } else if (error.code === "auth/email-already-in-use") {
+        setError("Email is already Existing.");
+      } else {
+        setError(error.message);
+      }
     }
   };
 
   return (
     <div className='signup'>
       <h1>Sign Up</h1>
-      {error && <p>{error}</p>}
+      {error && <p className='error-message'>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className='namedata'>
           <input
