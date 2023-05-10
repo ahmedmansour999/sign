@@ -9,7 +9,7 @@
     align-items: center;
     text-align: center;
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #2196f35c;
@@ -56,6 +56,7 @@ h1{
     padding: 10px;
     font-weight: bold;
     cursor: pointer;
+    color: antiquewhite;
 }
 
 input::-webkit-input-placeholder{
