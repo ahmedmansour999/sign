@@ -2,6 +2,11 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
+// google account
+import { GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
+// Google Account 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDysdepFFlp9TiWQyC9gjN9ZHGak-PsOlA",
   authDomain: "fir-f3a0f.firebaseapp.com",
@@ -17,4 +22,5 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export { auth, db };
+export { auth, db ,GoogleAuthProvider ,signInWithPopup };
+ 

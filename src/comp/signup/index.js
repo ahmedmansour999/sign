@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { auth } from './firebaseConfinge';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 import "./styled.css";
 
 const SignUp = ({setUserData }) => {
@@ -11,7 +11,7 @@ const SignUp = ({setUserData }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+  const [phoneNumber , setPhoneNumber] = useState('') ;
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!FirstName || !LastName) {
@@ -27,6 +27,7 @@ const SignUp = ({setUserData }) => {
       setPassword('');
       setFirstName('');
       setLastName('');
+      setPhoneNumber('')
       setError(null);
       setUserData( user) ;
       navigate('/login');
@@ -41,6 +42,22 @@ const SignUp = ({setUserData }) => {
       }
     }
   };
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      setUserData(result.user);
+      navigate("/welcome");
+    } catch (error) {
+      if (error.code==="auth/popup") {
+        setError("closed by user");
+      }
+    }
+  };
+  const handleLogIn = () => {
+    navigate('/login');
+  }
+
 
   return (
     <div className='signup'>
@@ -63,6 +80,15 @@ const SignUp = ({setUserData }) => {
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
+        <div className='phonenum'>
+          <input
+          type="number"
+          className='num'
+          placeholder="Phone Number"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+          </div>
         <input
           type="email"
           className='email'
@@ -78,6 +104,9 @@ const SignUp = ({setUserData }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button id='btn' type="submit">Sign Up</button>
+        <button type="button" onClick={handleLogIn} >login</button>
+        <button id='google' type="button" onClick={handleGoogleSignIn} >Sign in with Google</button>
+
       </form>
     </div>
   );

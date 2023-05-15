@@ -1,6 +1,12 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth , RecaptchaVerifier  } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+
+// google account
+import { GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
+// Google Account 
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDysdepFFlp9TiWQyC9gjN9ZHGak-PsOlA",
@@ -14,7 +20,16 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
 
-export { auth, db };
+export { auth, db, provider, GoogleAuthProvider  , signInWithPopup};
+
+
+
+
+
+
+
